@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reservas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-calendar-alt"></i> Sistema de Reservas</h1>
+            <p>Selecciona las fechas y completa tus datos para realizar una reserva</p>
+        </header>
+        
+        <div class="app-content">
+            <div class="calendar-section">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <h2 id="current-month">Septiembre 2023</h2>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-grid" id="week-days">
+                        <!-- Días de la semana generados por JS -->
+                    </div>
+                    <div class="calendar-grid" id="dates">
+                        <!-- Fechas generadas por JS -->
+                    </div>
+                </div>
+                
+                <div class="selected-dates">
+                    <p><strong>Fechas seleccionadas:</strong></p>
+                    <p id="selected-dates-range">No hay fechas seleccionadas</p>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Datos de Reserva</h3>
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="name">Nombre y Apellido</label>
+                        <input type="text" id="name" placeholder="Ej: Juan Pérez">
+                        <div class="error" id="name-error">Por favor ingresa tu nombre y apellido</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dni">DNI</label>
+                        <input type="text" id="dni" placeholder="Ej: 12345678">
+                        <div class="error" id="dni-error">Por favor ingresa un DNI válido (7-8 dígitos)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Ej: juan@ejemplo.com">
+                        <div class="error" id="email-error">Por favor ingresa un email válido</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono (Argentina)</label>
+                        <input type="tel" id="phone" placeholder="Ej: 11 1234-5678">
+                        <div class="error" id="phone-error">Por favor ingresa un teléfono válido (código de área + número)</div>
+                    </div>
+                    
+                    <button type="submit" class="btn">Confirmar Reserva</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="admin-panel">
+            <h3><i class="fas fa-bell"></i> Notificaciones de Reservas</h3>
+            <div id="notifications-list">
+                <!-- Las notificaciones se cargarán aquí -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 Sistema de Reservas - Todas las reservas están sujetas a confirmación</p>
+        </footer>
+    </div>
+    
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i> <span id="notification-text"></span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
