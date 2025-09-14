@@ -4,6 +4,14 @@ from datetime import datetime
 import re
 import os
 
+@app.before_first_request
+def create_tables():
+    try:
+        db.create_all()
+        print("Tablas creadas exitosamente")
+    except Exception as e:
+        print(f"Error creando tablas: {e}")
+        
 app = Flask(__name__)
 app.config.from_object('config.Config')
 
