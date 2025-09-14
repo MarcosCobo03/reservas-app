@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import os
 
 db = SQLAlchemy()
 
@@ -25,19 +24,3 @@ class AdminNotification(db.Model):
 
 def init_db(app):
     db.init_app(app)
-    with app.app_context():
-        try:
-            # Verificar si las tablas ya existen
-            inspector = db.inspect(db.engine)
-            if not inspector.has_table('reservation'):
-                db.create_all()
-                print("Tablas creadas exitosamente")
-            else:
-                print("Las tablas ya existen")
-        except Exception as e:
-            print(f"Error al inicializar la base de datos: {e}")
-            # Reintentar con SQLite si hay error con PostgreSQL
-            if 'postgresql' in app.config['SQLALCHEMY_DATABASE_URI']:
-                app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/reservas.db'
-                db.create_all()
-                print("Base de datos SQLite creada como respaldo")

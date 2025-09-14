@@ -1,2 +1,3 @@
 #!/bin/bash
-gunicorn app:app -b 0.0.0.0:$PORT
+echo "Iniciando la aplicación..."
+python app.py
